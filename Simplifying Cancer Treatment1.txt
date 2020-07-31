@@ -1,0 +1,1240 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\dhruv\\anaconda3\\lib\\importlib\\_bootstrap.py:219: RuntimeWarning: numpy.ufunc size changed, may indicate binary incompatibility. Expected 192 from C header, got 216 from PyObject\n",
+      "  return f(*args, **kwds)\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt \n",
+    "%matplotlib inline"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#1 Use pandas to read data as a dataframe.\n",
+    "\n",
+    "df = pd.read_csv(r'C:\\Users\\dhruv\\Desktop\\breast-cancer-data.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>id</th>\n",
+       "      <th>diagnosis</th>\n",
+       "      <th>radius_mean</th>\n",
+       "      <th>texture_mean</th>\n",
+       "      <th>perimeter_mean</th>\n",
+       "      <th>area_mean</th>\n",
+       "      <th>smoothness_mean</th>\n",
+       "      <th>compactness_mean</th>\n",
+       "      <th>concavity_mean</th>\n",
+       "      <th>concave points_mean</th>\n",
+       "      <th>...</th>\n",
+       "      <th>radius_worst</th>\n",
+       "      <th>texture_worst</th>\n",
+       "      <th>perimeter_worst</th>\n",
+       "      <th>area_worst</th>\n",
+       "      <th>smoothness_worst</th>\n",
+       "      <th>compactness_worst</th>\n",
+       "      <th>concavity_worst</th>\n",
+       "      <th>concave points_worst</th>\n",
+       "      <th>symmetry_worst</th>\n",
+       "      <th>fractal_dimension_worst</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>842302</td>\n",
+       "      <td>M</td>\n",
+       "      <td>17.99</td>\n",
+       "      <td>10.38</td>\n",
+       "      <td>122.80</td>\n",
+       "      <td>1001.0</td>\n",
+       "      <td>0.11840</td>\n",
+       "      <td>0.27760</td>\n",
+       "      <td>0.3001</td>\n",
+       "      <td>0.14710</td>\n",
+       "      <td>...</td>\n",
+       "      <td>25.38</td>\n",
+       "      <td>17.33</td>\n",
+       "      <td>184.60</td>\n",
+       "      <td>2019.0</td>\n",
+       "      <td>0.1622</td>\n",
+       "      <td>0.6656</td>\n",
+       "      <td>0.7119</td>\n",
+       "      <td>0.2654</td>\n",
+       "      <td>0.4601</td>\n",
+       "      <td>0.11890</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>842517</td>\n",
+       "      <td>M</td>\n",
+       "      <td>20.57</td>\n",
+       "      <td>17.77</td>\n",
+       "      <td>132.90</td>\n",
+       "      <td>1326.0</td>\n",
+       "      <td>0.08474</td>\n",
+       "      <td>0.07864</td>\n",
+       "      <td>0.0869</td>\n",
+       "      <td>0.07017</td>\n",
+       "      <td>...</td>\n",
+       "      <td>24.99</td>\n",
+       "      <td>23.41</td>\n",
+       "      <td>158.80</td>\n",
+       "      <td>1956.0</td>\n",
+       "      <td>0.1238</td>\n",
+       "      <td>0.1866</td>\n",
+       "      <td>0.2416</td>\n",
+       "      <td>0.1860</td>\n",
+       "      <td>0.2750</td>\n",
+       "      <td>0.08902</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>84300903</td>\n",
+       "      <td>M</td>\n",
+       "      <td>19.69</td>\n",
+       "      <td>21.25</td>\n",
+       "      <td>130.00</td>\n",
+       "      <td>1203.0</td>\n",
+       "      <td>0.10960</td>\n",
+       "      <td>0.15990</td>\n",
+       "      <td>0.1974</td>\n",
+       "      <td>0.12790</td>\n",
+       "      <td>...</td>\n",
+       "      <td>23.57</td>\n",
+       "      <td>25.53</td>\n",
+       "      <td>152.50</td>\n",
+       "      <td>1709.0</td>\n",
+       "      <td>0.1444</td>\n",
+       "      <td>0.4245</td>\n",
+       "      <td>0.4504</td>\n",
+       "      <td>0.2430</td>\n",
+       "      <td>0.3613</td>\n",
+       "      <td>0.08758</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>84348301</td>\n",
+       "      <td>M</td>\n",
+       "      <td>11.42</td>\n",
+       "      <td>20.38</td>\n",
+       "      <td>77.58</td>\n",
+       "      <td>386.1</td>\n",
+       "      <td>0.14250</td>\n",
+       "      <td>0.28390</td>\n",
+       "      <td>0.2414</td>\n",
+       "      <td>0.10520</td>\n",
+       "      <td>...</td>\n",
+       "      <td>14.91</td>\n",
+       "      <td>26.50</td>\n",
+       "      <td>98.87</td>\n",
+       "      <td>567.7</td>\n",
+       "      <td>0.2098</td>\n",
+       "      <td>0.8663</td>\n",
+       "      <td>0.6869</td>\n",
+       "      <td>0.2575</td>\n",
+       "      <td>0.6638</td>\n",
+       "      <td>0.17300</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>84358402</td>\n",
+       "      <td>M</td>\n",
+       "      <td>20.29</td>\n",
+       "      <td>14.34</td>\n",
+       "      <td>135.10</td>\n",
+       "      <td>1297.0</td>\n",
+       "      <td>0.10030</td>\n",
+       "      <td>0.13280</td>\n",
+       "      <td>0.1980</td>\n",
+       "      <td>0.10430</td>\n",
+       "      <td>...</td>\n",
+       "      <td>22.54</td>\n",
+       "      <td>16.67</td>\n",
+       "      <td>152.20</td>\n",
+       "      <td>1575.0</td>\n",
+       "      <td>0.1374</td>\n",
+       "      <td>0.2050</td>\n",
+       "      <td>0.4000</td>\n",
+       "      <td>0.1625</td>\n",
+       "      <td>0.2364</td>\n",
+       "      <td>0.07678</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>5 rows × 32 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         id diagnosis  radius_mean  texture_mean  perimeter_mean  area_mean  \\\n",
+       "0    842302         M        17.99         10.38          122.80     1001.0   \n",
+       "1    842517         M        20.57         17.77          132.90     1326.0   \n",
+       "2  84300903         M        19.69         21.25          130.00     1203.0   \n",
+       "3  84348301         M        11.42         20.38           77.58      386.1   \n",
+       "4  84358402         M        20.29         14.34          135.10     1297.0   \n",
+       "\n",
+       "   smoothness_mean  compactness_mean  concavity_mean  concave points_mean  \\\n",
+       "0          0.11840           0.27760          0.3001              0.14710   \n",
+       "1          0.08474           0.07864          0.0869              0.07017   \n",
+       "2          0.10960           0.15990          0.1974              0.12790   \n",
+       "3          0.14250           0.28390          0.2414              0.10520   \n",
+       "4          0.10030           0.13280          0.1980              0.10430   \n",
+       "\n",
+       "   ...  radius_worst  texture_worst  perimeter_worst  area_worst  \\\n",
+       "0  ...         25.38          17.33           184.60      2019.0   \n",
+       "1  ...         24.99          23.41           158.80      1956.0   \n",
+       "2  ...         23.57          25.53           152.50      1709.0   \n",
+       "3  ...         14.91          26.50            98.87       567.7   \n",
+       "4  ...         22.54          16.67           152.20      1575.0   \n",
+       "\n",
+       "   smoothness_worst  compactness_worst  concavity_worst  concave points_worst  \\\n",
+       "0            0.1622             0.6656           0.7119                0.2654   \n",
+       "1            0.1238             0.1866           0.2416                0.1860   \n",
+       "2            0.1444             0.4245           0.4504                0.2430   \n",
+       "3            0.2098             0.8663           0.6869                0.2575   \n",
+       "4            0.1374             0.2050           0.4000                0.1625   \n",
+       "\n",
+       "   symmetry_worst  fractal_dimension_worst  \n",
+       "0          0.4601                  0.11890  \n",
+       "1          0.2750                  0.08902  \n",
+       "2          0.3613                  0.08758  \n",
+       "3          0.6638                  0.17300  \n",
+       "4          0.2364                  0.07678  \n",
+       "\n",
+       "[5 rows x 32 columns]"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array(['M', 'B'], dtype=object)"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df['diagnosis'].unique()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "id                         0\n",
+       "diagnosis                  0\n",
+       "radius_mean                0\n",
+       "texture_mean               0\n",
+       "perimeter_mean             0\n",
+       "area_mean                  0\n",
+       "smoothness_mean            0\n",
+       "compactness_mean           0\n",
+       "concavity_mean             0\n",
+       "concave points_mean        0\n",
+       "symmetry_mean              0\n",
+       "fractal_dimension_mean     0\n",
+       "radius_se                  0\n",
+       "texture_se                 0\n",
+       "perimeter_se               0\n",
+       "area_se                    0\n",
+       "smoothness_se              0\n",
+       "compactness_se             0\n",
+       "concavity_se               0\n",
+       "concave points_se          0\n",
+       "symmetry_se                0\n",
+       "fractal_dimension_se       0\n",
+       "radius_worst               0\n",
+       "texture_worst              0\n",
+       "perimeter_worst            0\n",
+       "area_worst                 0\n",
+       "smoothness_worst           0\n",
+       "compactness_worst          0\n",
+       "concavity_worst            0\n",
+       "concave points_worst       0\n",
+       "symmetry_worst             0\n",
+       "fractal_dimension_worst    0\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#2 Check the data. There should be no missing values.\n",
+    "\n",
+    "df.isnull().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def diag(value):\n",
+    "    if(value == 'M'):\n",
+    "        return 1\n",
+    "    else:\n",
+    "        return 0"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#3 Convert the diagnosis column to 1/0 and store in a new column target.\n",
+    "\n",
+    "df['target'] = df['diagnosis'].apply(diag)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>id</th>\n",
+       "      <th>diagnosis</th>\n",
+       "      <th>radius_mean</th>\n",
+       "      <th>texture_mean</th>\n",
+       "      <th>perimeter_mean</th>\n",
+       "      <th>area_mean</th>\n",
+       "      <th>smoothness_mean</th>\n",
+       "      <th>compactness_mean</th>\n",
+       "      <th>concavity_mean</th>\n",
+       "      <th>concave points_mean</th>\n",
+       "      <th>...</th>\n",
+       "      <th>texture_worst</th>\n",
+       "      <th>perimeter_worst</th>\n",
+       "      <th>area_worst</th>\n",
+       "      <th>smoothness_worst</th>\n",
+       "      <th>compactness_worst</th>\n",
+       "      <th>concavity_worst</th>\n",
+       "      <th>concave points_worst</th>\n",
+       "      <th>symmetry_worst</th>\n",
+       "      <th>fractal_dimension_worst</th>\n",
+       "      <th>target</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>842302</td>\n",
+       "      <td>M</td>\n",
+       "      <td>17.99</td>\n",
+       "      <td>10.38</td>\n",
+       "      <td>122.80</td>\n",
+       "      <td>1001.0</td>\n",
+       "      <td>0.11840</td>\n",
+       "      <td>0.27760</td>\n",
+       "      <td>0.3001</td>\n",
+       "      <td>0.14710</td>\n",
+       "      <td>...</td>\n",
+       "      <td>17.33</td>\n",
+       "      <td>184.60</td>\n",
+       "      <td>2019.0</td>\n",
+       "      <td>0.1622</td>\n",
+       "      <td>0.6656</td>\n",
+       "      <td>0.7119</td>\n",
+       "      <td>0.2654</td>\n",
+       "      <td>0.4601</td>\n",
+       "      <td>0.11890</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>842517</td>\n",
+       "      <td>M</td>\n",
+       "      <td>20.57</td>\n",
+       "      <td>17.77</td>\n",
+       "      <td>132.90</td>\n",
+       "      <td>1326.0</td>\n",
+       "      <td>0.08474</td>\n",
+       "      <td>0.07864</td>\n",
+       "      <td>0.0869</td>\n",
+       "      <td>0.07017</td>\n",
+       "      <td>...</td>\n",
+       "      <td>23.41</td>\n",
+       "      <td>158.80</td>\n",
+       "      <td>1956.0</td>\n",
+       "      <td>0.1238</td>\n",
+       "      <td>0.1866</td>\n",
+       "      <td>0.2416</td>\n",
+       "      <td>0.1860</td>\n",
+       "      <td>0.2750</td>\n",
+       "      <td>0.08902</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>84300903</td>\n",
+       "      <td>M</td>\n",
+       "      <td>19.69</td>\n",
+       "      <td>21.25</td>\n",
+       "      <td>130.00</td>\n",
+       "      <td>1203.0</td>\n",
+       "      <td>0.10960</td>\n",
+       "      <td>0.15990</td>\n",
+       "      <td>0.1974</td>\n",
+       "      <td>0.12790</td>\n",
+       "      <td>...</td>\n",
+       "      <td>25.53</td>\n",
+       "      <td>152.50</td>\n",
+       "      <td>1709.0</td>\n",
+       "      <td>0.1444</td>\n",
+       "      <td>0.4245</td>\n",
+       "      <td>0.4504</td>\n",
+       "      <td>0.2430</td>\n",
+       "      <td>0.3613</td>\n",
+       "      <td>0.08758</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>84348301</td>\n",
+       "      <td>M</td>\n",
+       "      <td>11.42</td>\n",
+       "      <td>20.38</td>\n",
+       "      <td>77.58</td>\n",
+       "      <td>386.1</td>\n",
+       "      <td>0.14250</td>\n",
+       "      <td>0.28390</td>\n",
+       "      <td>0.2414</td>\n",
+       "      <td>0.10520</td>\n",
+       "      <td>...</td>\n",
+       "      <td>26.50</td>\n",
+       "      <td>98.87</td>\n",
+       "      <td>567.7</td>\n",
+       "      <td>0.2098</td>\n",
+       "      <td>0.8663</td>\n",
+       "      <td>0.6869</td>\n",
+       "      <td>0.2575</td>\n",
+       "      <td>0.6638</td>\n",
+       "      <td>0.17300</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>84358402</td>\n",
+       "      <td>M</td>\n",
+       "      <td>20.29</td>\n",
+       "      <td>14.34</td>\n",
+       "      <td>135.10</td>\n",
+       "      <td>1297.0</td>\n",
+       "      <td>0.10030</td>\n",
+       "      <td>0.13280</td>\n",
+       "      <td>0.1980</td>\n",
+       "      <td>0.10430</td>\n",
+       "      <td>...</td>\n",
+       "      <td>16.67</td>\n",
+       "      <td>152.20</td>\n",
+       "      <td>1575.0</td>\n",
+       "      <td>0.1374</td>\n",
+       "      <td>0.2050</td>\n",
+       "      <td>0.4000</td>\n",
+       "      <td>0.1625</td>\n",
+       "      <td>0.2364</td>\n",
+       "      <td>0.07678</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>5 rows × 33 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         id diagnosis  radius_mean  texture_mean  perimeter_mean  area_mean  \\\n",
+       "0    842302         M        17.99         10.38          122.80     1001.0   \n",
+       "1    842517         M        20.57         17.77          132.90     1326.0   \n",
+       "2  84300903         M        19.69         21.25          130.00     1203.0   \n",
+       "3  84348301         M        11.42         20.38           77.58      386.1   \n",
+       "4  84358402         M        20.29         14.34          135.10     1297.0   \n",
+       "\n",
+       "   smoothness_mean  compactness_mean  concavity_mean  concave points_mean  \\\n",
+       "0          0.11840           0.27760          0.3001              0.14710   \n",
+       "1          0.08474           0.07864          0.0869              0.07017   \n",
+       "2          0.10960           0.15990          0.1974              0.12790   \n",
+       "3          0.14250           0.28390          0.2414              0.10520   \n",
+       "4          0.10030           0.13280          0.1980              0.10430   \n",
+       "\n",
+       "   ...  texture_worst  perimeter_worst  area_worst  smoothness_worst  \\\n",
+       "0  ...          17.33           184.60      2019.0            0.1622   \n",
+       "1  ...          23.41           158.80      1956.0            0.1238   \n",
+       "2  ...          25.53           152.50      1709.0            0.1444   \n",
+       "3  ...          26.50            98.87       567.7            0.2098   \n",
+       "4  ...          16.67           152.20      1575.0            0.1374   \n",
+       "\n",
+       "   compactness_worst  concavity_worst  concave points_worst  symmetry_worst  \\\n",
+       "0             0.6656           0.7119                0.2654          0.4601   \n",
+       "1             0.1866           0.2416                0.1860          0.2750   \n",
+       "2             0.4245           0.4504                0.2430          0.3613   \n",
+       "3             0.8663           0.6869                0.2575          0.6638   \n",
+       "4             0.2050           0.4000                0.1625          0.2364   \n",
+       "\n",
+       "   fractal_dimension_worst  target  \n",
+       "0                  0.11890       1  \n",
+       "1                  0.08902       1  \n",
+       "2                  0.08758       1  \n",
+       "3                  0.17300       1  \n",
+       "4                  0.07678       1  \n",
+       "\n",
+       "[5 rows x 33 columns]"
+      ]
+     },
+     "execution_count": 22,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#4 Store the encoded column in dataframe and drop the diagnosis column for simplicity.\n",
+    "\n",
+    "del df['diagnosis']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>id</th>\n",
+       "      <th>radius_mean</th>\n",
+       "      <th>texture_mean</th>\n",
+       "      <th>perimeter_mean</th>\n",
+       "      <th>area_mean</th>\n",
+       "      <th>smoothness_mean</th>\n",
+       "      <th>compactness_mean</th>\n",
+       "      <th>concavity_mean</th>\n",
+       "      <th>concave points_mean</th>\n",
+       "      <th>symmetry_mean</th>\n",
+       "      <th>...</th>\n",
+       "      <th>texture_worst</th>\n",
+       "      <th>perimeter_worst</th>\n",
+       "      <th>area_worst</th>\n",
+       "      <th>smoothness_worst</th>\n",
+       "      <th>compactness_worst</th>\n",
+       "      <th>concavity_worst</th>\n",
+       "      <th>concave points_worst</th>\n",
+       "      <th>symmetry_worst</th>\n",
+       "      <th>fractal_dimension_worst</th>\n",
+       "      <th>target</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>842302</td>\n",
+       "      <td>17.99</td>\n",
+       "      <td>10.38</td>\n",
+       "      <td>122.80</td>\n",
+       "      <td>1001.0</td>\n",
+       "      <td>0.11840</td>\n",
+       "      <td>0.27760</td>\n",
+       "      <td>0.3001</td>\n",
+       "      <td>0.14710</td>\n",
+       "      <td>0.2419</td>\n",
+       "      <td>...</td>\n",
+       "      <td>17.33</td>\n",
+       "      <td>184.60</td>\n",
+       "      <td>2019.0</td>\n",
+       "      <td>0.1622</td>\n",
+       "      <td>0.6656</td>\n",
+       "      <td>0.7119</td>\n",
+       "      <td>0.2654</td>\n",
+       "      <td>0.4601</td>\n",
+       "      <td>0.11890</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>842517</td>\n",
+       "      <td>20.57</td>\n",
+       "      <td>17.77</td>\n",
+       "      <td>132.90</td>\n",
+       "      <td>1326.0</td>\n",
+       "      <td>0.08474</td>\n",
+       "      <td>0.07864</td>\n",
+       "      <td>0.0869</td>\n",
+       "      <td>0.07017</td>\n",
+       "      <td>0.1812</td>\n",
+       "      <td>...</td>\n",
+       "      <td>23.41</td>\n",
+       "      <td>158.80</td>\n",
+       "      <td>1956.0</td>\n",
+       "      <td>0.1238</td>\n",
+       "      <td>0.1866</td>\n",
+       "      <td>0.2416</td>\n",
+       "      <td>0.1860</td>\n",
+       "      <td>0.2750</td>\n",
+       "      <td>0.08902</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>84300903</td>\n",
+       "      <td>19.69</td>\n",
+       "      <td>21.25</td>\n",
+       "      <td>130.00</td>\n",
+       "      <td>1203.0</td>\n",
+       "      <td>0.10960</td>\n",
+       "      <td>0.15990</td>\n",
+       "      <td>0.1974</td>\n",
+       "      <td>0.12790</td>\n",
+       "      <td>0.2069</td>\n",
+       "      <td>...</td>\n",
+       "      <td>25.53</td>\n",
+       "      <td>152.50</td>\n",
+       "      <td>1709.0</td>\n",
+       "      <td>0.1444</td>\n",
+       "      <td>0.4245</td>\n",
+       "      <td>0.4504</td>\n",
+       "      <td>0.2430</td>\n",
+       "      <td>0.3613</td>\n",
+       "      <td>0.08758</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>84348301</td>\n",
+       "      <td>11.42</td>\n",
+       "      <td>20.38</td>\n",
+       "      <td>77.58</td>\n",
+       "      <td>386.1</td>\n",
+       "      <td>0.14250</td>\n",
+       "      <td>0.28390</td>\n",
+       "      <td>0.2414</td>\n",
+       "      <td>0.10520</td>\n",
+       "      <td>0.2597</td>\n",
+       "      <td>...</td>\n",
+       "      <td>26.50</td>\n",
+       "      <td>98.87</td>\n",
+       "      <td>567.7</td>\n",
+       "      <td>0.2098</td>\n",
+       "      <td>0.8663</td>\n",
+       "      <td>0.6869</td>\n",
+       "      <td>0.2575</td>\n",
+       "      <td>0.6638</td>\n",
+       "      <td>0.17300</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>84358402</td>\n",
+       "      <td>20.29</td>\n",
+       "      <td>14.34</td>\n",
+       "      <td>135.10</td>\n",
+       "      <td>1297.0</td>\n",
+       "      <td>0.10030</td>\n",
+       "      <td>0.13280</td>\n",
+       "      <td>0.1980</td>\n",
+       "      <td>0.10430</td>\n",
+       "      <td>0.1809</td>\n",
+       "      <td>...</td>\n",
+       "      <td>16.67</td>\n",
+       "      <td>152.20</td>\n",
+       "      <td>1575.0</td>\n",
+       "      <td>0.1374</td>\n",
+       "      <td>0.2050</td>\n",
+       "      <td>0.4000</td>\n",
+       "      <td>0.1625</td>\n",
+       "      <td>0.2364</td>\n",
+       "      <td>0.07678</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>5 rows × 32 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         id  radius_mean  texture_mean  perimeter_mean  area_mean  \\\n",
+       "0    842302        17.99         10.38          122.80     1001.0   \n",
+       "1    842517        20.57         17.77          132.90     1326.0   \n",
+       "2  84300903        19.69         21.25          130.00     1203.0   \n",
+       "3  84348301        11.42         20.38           77.58      386.1   \n",
+       "4  84358402        20.29         14.34          135.10     1297.0   \n",
+       "\n",
+       "   smoothness_mean  compactness_mean  concavity_mean  concave points_mean  \\\n",
+       "0          0.11840           0.27760          0.3001              0.14710   \n",
+       "1          0.08474           0.07864          0.0869              0.07017   \n",
+       "2          0.10960           0.15990          0.1974              0.12790   \n",
+       "3          0.14250           0.28390          0.2414              0.10520   \n",
+       "4          0.10030           0.13280          0.1980              0.10430   \n",
+       "\n",
+       "   symmetry_mean  ...  texture_worst  perimeter_worst  area_worst  \\\n",
+       "0         0.2419  ...          17.33           184.60      2019.0   \n",
+       "1         0.1812  ...          23.41           158.80      1956.0   \n",
+       "2         0.2069  ...          25.53           152.50      1709.0   \n",
+       "3         0.2597  ...          26.50            98.87       567.7   \n",
+       "4         0.1809  ...          16.67           152.20      1575.0   \n",
+       "\n",
+       "   smoothness_worst  compactness_worst  concavity_worst  concave points_worst  \\\n",
+       "0            0.1622             0.6656           0.7119                0.2654   \n",
+       "1            0.1238             0.1866           0.2416                0.1860   \n",
+       "2            0.1444             0.4245           0.4504                0.2430   \n",
+       "3            0.2098             0.8663           0.6869                0.2575   \n",
+       "4            0.1374             0.2050           0.4000                0.1625   \n",
+       "\n",
+       "   symmetry_worst  fractal_dimension_worst  target  \n",
+       "0          0.4601                  0.11890       1  \n",
+       "1          0.2750                  0.08902       1  \n",
+       "2          0.3613                  0.08758       1  \n",
+       "3          0.6638                  0.17300       1  \n",
+       "4          0.2364                  0.07678       1  \n",
+       "\n",
+       "[5 rows x 32 columns]"
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(569, 32)"
+      ]
+     },
+     "execution_count": 27,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "X_feature = df.drop('target',axis =1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Y_target = df['target']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\dhruv\\anaconda3\\lib\\importlib\\_bootstrap.py:219: RuntimeWarning: numpy.ufunc size changed, may indicate binary incompatibility. Expected 192 from C header, got 216 from PyObject\n",
+      "  return f(*args, **kwds)\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn import preprocessing"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#5 Scale the data so that each feature has a single unit variance.\n",
+    "\n",
+    "scale_X_feature = preprocessing.scale(X_feature)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(569, 31)"
+      ]
+     },
+     "execution_count": 39,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "scale_X_feature.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split\n",
+    "X_train, X_test, Y_train,Y_test = train_test_split(scale_X_feature,Y_target)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(426, 31)\n",
+      "(143, 31)\n",
+      "(426,)\n",
+      "(143,)\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(X_train.shape)\n",
+    "print(X_test.shape)\n",
+    "print(Y_train.shape)\n",
+    "print(Y_test.shape)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#6 Transform this data to its first 2 principal components.\n",
+    "\n",
+    "from sklearn.decomposition import PCA\n",
+    "pca_trans = PCA(n_components = 2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "PCA(n_components=2)"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "pca_trans.fit(X_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "X_train_trans = pca_trans.transform(X_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(143, 2)"
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "X_test_trans = pca_trans.transform(X_test)\n",
+    "X_test_trans.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.linear_model import LogisticRegression\n",
+    "logReg = LogisticRegression()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 69,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "LogisticRegression()"
+      ]
+     },
+     "execution_count": 69,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "logReg.fit(X_train_trans, Y_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Y_pred_2 = logReg.predict(X_test_trans)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 71,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Text(0, 0.5, 'Second Principal Component')"
+      ]
+     },
+     "execution_count": 71,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 648x432 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "#7 Plot the two dimensions.\n",
+    "\n",
+    "plt.figure(figsize=(9,6))\n",
+    "plt.scatter(X_train_trans[:,0],X_train_trans[:,1],cmap='viridis')\n",
+    "plt.xlabel('First Principal Component')\n",
+    "plt.ylabel('Second Principal Component')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 72,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([0.42021908, 0.18886456])"
+      ]
+     },
+     "execution_count": 72,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#8 Print the explained variance.\n",
+    "\n",
+    "pca_trans.explained_variance_ratio_"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 73,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#9 Try the same with 3 principal components.\n",
+    "\n",
+    "pca_trans_3 = PCA(n_components = 3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 74,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "PCA(n_components=3)"
+      ]
+     },
+     "execution_count": 74,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "pca_trans_3.fit(X_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 75,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "X_train_trans_3 = pca_trans_3.transform(X_train)\n",
+    "X_test_trans_3 = pca_trans_3.transform(X_test)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 76,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.linear_model import LogisticRegression\n",
+    "logreg = LogisticRegression()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 80,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "LogisticRegression()"
+      ]
+     },
+     "execution_count": 80,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "logreg.fit(X_train_trans_3, Y_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 85,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pred_y_3 = logreg.predict(X_test_trans_3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 86,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.metrics import accuracy_score"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 88,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.958041958041958\n",
+      "0.965034965034965\n"
+     ]
+    }
+   ],
+   "source": [
+    "#10 Check the accuracy for 2nd and 3rd components.\n",
+    "\n",
+    "accuracy_2 = accuracy_score(Y_pred_2,Y_test)\n",
+    "accuracy_3 = accuracy_score(pred_y_3, Y_test)\n",
+    "print(accuracy_2)\n",
+    "print(accuracy_3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
