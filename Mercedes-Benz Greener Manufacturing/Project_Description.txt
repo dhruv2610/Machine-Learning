@@ -1,0 +1,14 @@
+Well, the project is really nice though it seems difficult to me initailly but after diving deeper into the problem senerio it all seems comfortable.
+
+First and foremost thing which I need to do, is to understand the problem. After that, what are the actions to be performed inorder to solve the given problem. However, this is my second try for doing this project, I clearly understand the problem.
+
+After understanding problem clearly, I started building the struture for this problem in my head. Then I started doing things stepbystep manner in my jupyter notebook.
+
+I started by importing all the required libraries in my project. Then, I imported the train and test dataset. I understand the dataset by using various techniques.
+
+Then I checked for the null values in the train and test dataset, but luckly there is no null values. Then I checked for the unique value in train and test dataset, and cameup with the result that there is only one unique column in train dataset i.e, 'y'.
+
+After which I split the datasets into X and Y, for both training and testing dataset. Then I applied Label encoding and then find the variance of all the variables in X_train and x_test. There is exactly 12 columns with zero variance, which I have droped from the datasets.
+
+Thenafter, I applied Dimensionality reduction (PCA), inorder to reduce dimensions. Finally, I implement XGBoost model for predicting test dataset. 
+ 
